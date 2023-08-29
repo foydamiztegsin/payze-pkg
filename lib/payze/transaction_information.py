@@ -45,12 +45,3 @@ class Payze:
         else:
             print(res.status_code)
             
-            
-test = Payze(
-    api_url='https://payze.io/api/v1', 
-    api_key='527257252', 
-    api_secret='51511541'
-    )
-
-test.transaction_information(transactionId='transaction_id')
-    

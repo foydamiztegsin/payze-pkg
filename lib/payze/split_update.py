@@ -37,16 +37,8 @@ class Payze:
         )
 
         if res.status_code == 200:
-            print(True)
+            print(True, res.text)
         else:
-            print(res.status_code)
+            print(res.text, res.status_code)
             
             
-test = Payze(
-    api_url='https://payze.io/api/v1', 
-    api_key='527257252', 
-    api_secret='51511541'
-    )
-
-test.split_update()
-    

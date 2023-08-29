@@ -18,11 +18,11 @@ class Payze:
         
     def no_redirect(
         self, 
-        securityNumber: str
+        security_number: str
     ) -> None:
         self.api_url = f"{self.api_url}mobile/cardInfo"
         payload = json.dumps({
-            "securityNumber": securityNumber
+            "securityNumber": security_number
         })
         
         res = requests.post(
@@ -42,6 +42,6 @@ test = Payze(
     )
 
 test.no_redirect(
-    securityNumber='123'
+    security_number='123'
 )
     

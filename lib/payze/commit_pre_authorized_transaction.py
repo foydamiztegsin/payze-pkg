@@ -49,14 +49,3 @@ class Payze:
             print(res.status_code)
             
             
-test = Payze(
-    api_url='https://payze.io/api/v1', 
-    api_key='527257252', 
-    api_secret='51511541'
-    )
-
-test.commit_pre_authorized_transaction(
-    transactionId='13123123123',
-    amount=1.5
-    )
-    

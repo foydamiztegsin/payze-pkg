@@ -9,14 +9,14 @@ class Payze:
         api_url: str,
         api_key: str,
         api_secret: str,
-        hookUrl: str,
-        hookUrlV2: str,
+        hook_url: str,
+        hook_url_v2: str,
     ) -> "Payze":
         self.api_url = api_url
         self.api_key = api_key
         self.api_secret = api_secret
-        self.hookUrl = hookUrl
-        self.hookUrlV2 = hookUrlV2
+        self.hook_url = hook_url
+        self.hook_url_v2 = hook_url_v2
         self.headers = {
             "accept": "application/json",
             "content-type": "application/json"
@@ -30,12 +30,12 @@ class Payze:
         self,
         amount: float,
         cardToken: str,
-        callbackUrl: str,
-        callbackErrorUrl: str,
+        callback_url: str,
+        callback_error_url: str,
         preauthorize = False,
         lang = 'EN',
         currency = "USD",
-        hookRefund = False,
+        hook_refund = False,
     ) -> None:
         payload = json.dumps({
             "method": self.methods.get('method'),
@@ -45,13 +45,13 @@ class Payze:
                 "amount": amount,
                 "currency": currency,
                 "cardToken": cardToken,
-                "callback": callbackUrl,
-                "callbackError": callbackErrorUrl,
+                "callback": callback_url,
+                "callbackError": callback_error_url,
                 "preauthorize": preauthorize,
                 "lang": lang,
-                "hookUrl": self.hookUrl, 
-                "hookUrlV2": self.hookUrlV2,
-                "hookRefund": hookRefund
+                "hookUrl": self.hook_url, 
+                "hookUrlV2": self.hook_url_v2,
+                "hookRefund": hook_refund
             }
         })
         res = requests.post(
@@ -61,24 +61,8 @@ class Payze:
         )
 
         if res.status_code == 200:
-            print(True)
+            print(True, res.text)
         else:
             print(res.text)
             
             
-test = Payze(
-    api_url='https://payze.io/api/v1', 
-    api_key='527257252', 
-    api_secret='51511541',
-    hookUrl='https://corp.com/payze_hook?authorization_token=token',
-    hookUrlV2='https://corp.com/payze_hook?authorization_token=token'
-    )
-
-test.pay_with_card_and_split(
-    amount='0',
-    cardToken='CardId',
-    callbackUrl='https://corp.com/success_callback',
-    callbackErrorUrl='https://corp.com/fail_url',
-    
-    )
-    
