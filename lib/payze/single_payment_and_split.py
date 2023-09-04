@@ -59,11 +59,29 @@ class Payze:
         )
 
         if res.status_code == 200:
-            print(True, res.text)
+            print(res.text)
         else:
             print(res.text)
             
             
+test = Payze(
+    api_url='https://payze.io/api/v1', 
+    api_key='0EA3354AA7DF46909C483065639840C0', 
+    api_secret='E91728FC9D364051B8A300AF84623390',
+    hook_url='https://corp.com/payze_hook?authorization_token=token',
+    hook_url_v2='https://corp.com/payze_hook?authorization_token=token'
+    )
 
+test.single_payment_and_split(
+    amount=1,
+    currency="USD",
+    callback_url='https://corp.com/success_callback',
+    callback_error_url='https://corp.com/fail_url',
+    preauthorize=False,
+    lang="EN",
+    hook_refund=False
+    )
+    
+    
     
     

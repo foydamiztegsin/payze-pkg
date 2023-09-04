@@ -67,7 +67,7 @@ class Payze:
         )
 
         if res.status_code == 200:
-            print(True)
+            print(res.text)
         else:
             print(res.text)
             

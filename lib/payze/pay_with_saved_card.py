@@ -63,4 +63,3 @@ class Payze:
         else:
             print(res.text)
             
-            
